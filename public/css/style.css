@@ -22,6 +22,7 @@ body {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: var(--color-dark);
   line-height: 1.5;
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
 }
 
 /* Header and Navigation */
@@ -31,6 +32,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%;
 }
 
 .nav-link {
@@ -46,6 +48,37 @@ body {
 .nav-link.active {
   color: var(--color-primary);
   border-bottom: 2px solid var(--color-primary);
+}
+
+/* Mobile Navigation Styles */
+.mobile-nav-link {
+  display: block;
+  width: 100%;
+  transition: var(--transition);
+}
+
+.mobile-nav-link:hover {
+  background-color: var(--color-light);
+}
+
+.mobile-nav-link.active {
+  color: var(--color-primary);
+  border-left: 3px solid var(--color-primary);
+  border-bottom: none;
+  padding-left: calc(1rem - 3px);
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+/* Make sure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure all containers have proper padding on mobile */
+.container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 /* Hero Section */
@@ -94,6 +127,7 @@ body {
   background-color: white;
   height: 100%;
   position: relative;
+  width: 100%; /* Ensure full width on mobile */
 }
 
 .destination-card:hover {
@@ -119,10 +153,10 @@ body {
 }
 
 .destination-title {
-  font-weight: 600;
   font-size: 1.25rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  color: white !important;
+  line-height: 1.2;
 }
 
 .destination-location {
@@ -294,6 +328,35 @@ body {
   .destination-image {
     height: 220px;
   }
+  
+  /* Adjust grid layouts for tablets */
+  .grid-cols-3, .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Adjust font sizes for better readability */
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  /* Ensure buttons have adequate spacing */
+  .btn {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Improve form layout on tablets */
+  .search-form {
+    padding: 1.25rem;
+  }
+  
+  /* Ensure proper spacing between form elements */
+  .gap-4 {
+    gap: 0.75rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -304,14 +367,107 @@ body {
   
   .search-form {
     margin-top: -1.5rem;
+    padding: 1rem;
   }
   
   .btn {
     padding: 0.625rem 1.25rem;
+    width: 100%; /* Full width buttons on mobile */
   }
   
   .destination-image {
     height: 200px;
+  }
+  
+  /* Single column layout on mobile */
+  .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Adjust spacing for mobile */
+  .py-12 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .py-16 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Adjust font sizes for mobile */
+  h1 {
+    font-size: 1.875rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  /* Ensure form elements are properly sized on mobile */
+  input, select, textarea, button {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  /* Improve touch targets */
+  label {
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  /* Ensure proper spacing between stacked elements */
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Improve readability of small text */
+  .text-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .hero-section {
+    height: 60vh;
+    padding: 2rem 1rem;
+  }
+  
+  /* Further reduce padding */
+  .p-4 {
+    padding: 0.75rem;
+  }
+  
+  .p-6 {
+    padding: 1rem;
+  }
+  
+  /* Ensure buttons are large enough for touch */
+  .btn, button {
+    min-height: 44px; /* Apple's recommended minimum touch target size */
+  }
+  
+  /* Reduce card height for small screens */
+  .destination-image {
+    height: 180px;
+  }
+  
+  /* Simplify UI on very small screens */
+  .destination-content {
+    padding: 1rem;
+  }
+  
+  .destination-title {
+    font-size: 1.125rem;
   }
 }
 

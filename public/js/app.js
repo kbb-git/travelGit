@@ -2336,6 +2336,9 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchParams, setSearchParams] = useState(null);
   const [selectedExtras, setSelectedExtras] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // Add state for mobile menu
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("bookingItems") || "[]");
@@ -2454,6 +2457,13 @@ function App() {
       }, 100);
     }
   }, [currentPage]);
+
+  // Initialize Lucide icons after component renders or updates
+  useEffect(() => {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  }, [currentPage, mobileMenuOpen]); // Re-run when page or menu state changes
 
   // Render Homepage
   function renderHomepage() {
@@ -2664,6 +2674,7 @@ function App() {
               </span>
             </button>
             
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
               <a 
                 href="#" 
@@ -2703,7 +2714,15 @@ function App() {
             </nav>
             
             <div className="flex items-center space-x-4">
-              {/* Removed briefcase/basket icon button */}
+              {/* Mobile menu button */}
+              <button 
+                className="md:hidden flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle mobile menu"
+              >
+                <span data-lucide={mobileMenuOpen ? "x" : "menu"} className="w-6 h-6"></span>
+              </button>
+              
               <button 
                 onClick={() => { setCurrentPage("account"); }} 
                 className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors"
@@ -2714,6 +2733,49 @@ function App() {
               </button>
             </div>
           </div>
+          
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden bg-white shadow-lg rounded-b-lg overflow-hidden">
+              <nav className="flex flex-col py-2">
+                <a 
+                  href="#" 
+                  className={`nav-link mobile-nav-link px-4 py-2 ${currentPage === 'home' ? 'active' : ''}`}
+                  onClick={(e) => { e.preventDefault(); setCurrentPage("home"); setMobileMenuOpen(false); }}
+                >
+                  Home
+                </a>
+                <a 
+                  href="#" 
+                  className={`nav-link mobile-nav-link px-4 py-2 ${currentPage === 'destinations' ? 'active' : ''}`}
+                  onClick={(e) => { e.preventDefault(); setCurrentPage("results"); setSearchResults(products); setMobileMenuOpen(false); }}
+                >
+                  Destinations
+                </a>
+                <a 
+                  href="#" 
+                  className={`nav-link mobile-nav-link px-4 py-2 ${currentPage === 'deals' ? 'active' : ''}`}
+                  onClick={(e) => { e.preventDefault(); setCurrentPage("deals"); setMobileMenuOpen(false); }}
+                >
+                  Deals
+                </a>
+                <a 
+                  href="#" 
+                  className={`nav-link mobile-nav-link px-4 py-2 ${currentPage === 'about' ? 'active' : ''}`}
+                  onClick={(e) => { e.preventDefault(); setCurrentPage("about"); setMobileMenuOpen(false); }}
+                >
+                  About
+                </a>
+                <a 
+                  href="#" 
+                  className="nav-link mobile-nav-link px-4 py-2"
+                  onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); }}
+                >
+                  Contact
+                </a>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
