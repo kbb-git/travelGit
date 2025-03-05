@@ -2340,6 +2340,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // Add state for mobile menu
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage, detailProductId]);
+
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("bookingItems") || "[]");
     setBookingItems(saved);
