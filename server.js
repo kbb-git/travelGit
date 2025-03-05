@@ -269,8 +269,8 @@ app.post("/api/create-payment-session", async (req, res) => {
         email: customer && customer.email ? customer.email : "john.doe@example.com",
         name: customer && customer.name ? customer.name : "John Doe"
       },
-      success_url: `${req.protocol}://${req.get('host')}/success?session_id=${Date.now()}`,
-      failure_url: `${req.protocol}://${req.get('host')}/failure?session_id=${Date.now()}`,
+      success_url: "http://localhost:3001/success.html",
+      failure_url: "http://localhost:3001/failure.html",
       capture: true,
       locale: finalLocale || "en-GB",
       processing_channel_id: processingChannelId,
@@ -322,8 +322,18 @@ app.get("/success", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "success.html"));
 });
 
+app.get("/success.html", (req, res) => {
+  console.log("Success.html route hit with query params:", req.query);
+  res.sendFile(path.join(__dirname, "public", "success.html"));
+});
+
 app.get("/failure", (req, res) => {
   console.log("Failure route hit with query params:", req.query);
+  res.sendFile(path.join(__dirname, "public", "failure.html"));
+});
+
+app.get("/failure.html", (req, res) => {
+  console.log("Failure.html route hit with query params:", req.query);
   res.sendFile(path.join(__dirname, "public", "failure.html"));
 });
 
