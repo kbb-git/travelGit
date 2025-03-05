@@ -256,6 +256,19 @@ app.post("/api/create-payment-session", async (req, res) => {
       });
     }
 
+    // Get the host from the request or use the render.com URL if available
+    const baseUrl = process.env.RENDER_EXTERNAL_URL || (req.protocol + '://' + req.get('host'));
+    const successUrl = `${baseUrl}/success.html`;
+    const failureUrl = `${baseUrl}/failure.html`;
+    
+    console.log("Environment:", {
+      NODE_ENV: process.env.NODE_ENV,
+      RENDER_EXTERNAL_URL: process.env.RENDER_EXTERNAL_URL,
+      host: req.get('host'),
+      protocol: req.protocol
+    });
+    console.log("Using redirect URLs:", { successUrl, failureUrl });
+    
     const sessionRequest = {
       amount,
       currency,
@@ -269,8 +282,8 @@ app.post("/api/create-payment-session", async (req, res) => {
         email: customer && customer.email ? customer.email : "john.doe@example.com",
         name: customer && customer.name ? customer.name : "John Doe"
       },
-      success_url: "http://localhost:3001/success.html",
-      failure_url: "http://localhost:3001/failure.html",
+      success_url: successUrl,
+      failure_url: failureUrl,
       capture: true,
       locale: finalLocale || "en-GB",
       processing_channel_id: processingChannelId,
