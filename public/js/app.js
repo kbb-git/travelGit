@@ -2345,6 +2345,104 @@ function App() {
     setBookingItems(saved);
   }, []);
 
+  // Initialize products data
+  useEffect(() => {
+    // Sample destination data
+    const mockProducts = [
+      {
+        id: 1,
+        name: "Paris Getaway",
+        location: "Paris, France",
+        image: "/images/paris.jpg",
+        price: 1299,
+        rating: 4.8,
+        type: "city",
+        duration: "7 days",
+        description: "Experience the romance of Paris with this 7-day luxury package including Eiffel Tower visit and Seine river cruise."
+      },
+      {
+        id: 2,
+        name: "Bali Paradise",
+        location: "Bali, Indonesia",
+        image: "/images/bali.jpg",
+        price: 1499,
+        rating: 4.9,
+        type: "beach",
+        duration: "10 days",
+        description: "Relax in tropical paradise with stunning beaches, lush rice terraces, and ancient temples."
+      },
+      {
+        id: 3,
+        name: "New York City Explorer",
+        location: "New York, USA",
+        image: "/images/newyork.jpg",
+        price: 1799,
+        rating: 4.7,
+        type: "city",
+        duration: "5 days",
+        description: "Discover the Big Apple with this comprehensive city tour including Times Square, Central Park and Broadway."
+      },
+      {
+        id: 4,
+        name: "Tokyo Adventure",
+        location: "Tokyo, Japan",
+        image: "/images/tokyo.jpg",
+        price: 2299,
+        rating: 4.8,
+        type: "adventure",
+        duration: "9 days",
+        description: "Immerse yourself in Japanese culture, cutting-edge technology and exquisite cuisine in this Tokyo adventure."
+      },
+      {
+        id: 5,
+        name: "Barcelona Cultural Tour",
+        location: "Barcelona, Spain",
+        image: "/images/barcelona.jpg",
+        price: 1199,
+        rating: 4.6,
+        type: "cultural",
+        duration: "6 days",
+        description: "Experience Gaudi's architecture, Mediterranean beaches and Spanish culture in vibrant Barcelona."
+      },
+      {
+        id: 8,
+        name: "Rome Imperial Tour",
+        location: "Rome, Italy",
+        image: "/images/rome.jpg",
+        price: 1399,
+        rating: 4.7,
+        type: "cultural",
+        duration: "7 days",
+        description: "Walk through ancient history in the Eternal City, exploring the Colosseum, Vatican and more."
+      },
+      {
+        id: 9,
+        name: "Santorini Escape",
+        location: "Santorini, Greece",
+        image: "/images/santorini.jpg",
+        price: 1799,
+        rating: 4.9,
+        type: "beach",
+        duration: "8 days",
+        description: "Experience the iconic blue domes and stunning sunsets of this breathtaking Greek island."
+      },
+      {
+        id: 10,
+        name: "Maldives Luxury Retreat",
+        location: "Maldives",
+        image: "/images/maldives.jpg",
+        price: 3299,
+        rating: 5.0,
+        type: "beach",
+        duration: "10 days",
+        description: "Stay in overwater bungalows with direct access to crystal clear waters and coral reefs."
+      }
+    ];
+    
+    setProducts(mockProducts);
+    setIsLoading(false);
+  }, []);
+
   function saveBooking(items) {
     localStorage.setItem("bookingItems", JSON.stringify(items));
     setBookingItems(items);
