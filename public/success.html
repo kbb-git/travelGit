@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Success</title>
+  <title>Demo Completed Successfully</title>
   <script>
     // Add this function to get theme colors
     function getThemeConfig() {
@@ -24,7 +24,9 @@
           expandButtonText: '#ffffff',
           expandButtonHover: '#4b5563',
           titleText: '#1f2937',
-          responseTitle: '#1f2937'
+          responseTitle: '#1f2937',
+          secondaryButtonBg: '#4b5563',
+          secondaryButtonHover: '#374151'
         },
         midnight: {
           background: '#0A0A0C',
@@ -40,7 +42,9 @@
           expandButtonText: '#F9F9FB',
           expandButtonHover: '#4936E0',
           titleText: '#F9F9FB',
-          responseTitle: '#F9F9FB'
+          responseTitle: '#F9F9FB',
+          secondaryButtonBg: '#333336',
+          secondaryButtonHover: '#2a2a2d'
         },
         simplicity: {
           background: '#ffffff',
@@ -56,7 +60,9 @@
           expandButtonText: '#ffffff',
           expandButtonHover: '#1a2942',
           titleText: '#09182B',
-          responseTitle: '#09182B'
+          responseTitle: '#09182B',
+          secondaryButtonBg: '#4a5568',
+          secondaryButtonHover: '#2d3748'
         },
         grapefruit: {
           background: '#F7F7F5',
@@ -72,7 +78,9 @@
           expandButtonText: '#FFFFFF',
           expandButtonHover: '#D03F39',
           titleText: '#000000',
-          responseTitle: '#000000'
+          responseTitle: '#000000',
+          secondaryButtonBg: '#4a5568',
+          secondaryButtonHover: '#2d3748'
         }
       };
       
@@ -93,12 +101,13 @@
 
       const successIcon = document.querySelector('.success-icon');
       if (successIcon) {
+        successIcon.style.color = 'white';
         successIcon.style.backgroundColor = theme.success;
       }
 
       const h1 = document.querySelector('h1');
       if (h1) {
-        h1.style.color = theme.titleText;
+        h1.style.color = theme.success;
       }
 
       const pre = document.querySelector('pre');
@@ -107,15 +116,27 @@
         pre.style.color = theme.codeText;
       }
 
-      const homeButton = document.querySelector('.home-button');
-      if (homeButton) {
-        homeButton.style.background = theme.buttonBg;
-        homeButton.style.color = '#FFFFFF';
-        homeButton.addEventListener('mouseenter', () => {
-          homeButton.style.background = theme.buttonHover;
+      const primaryButton = document.querySelector('.primary-button');
+      if (primaryButton) {
+        primaryButton.style.background = theme.buttonBg;
+        primaryButton.style.color = '#FFFFFF';
+        primaryButton.addEventListener('mouseenter', () => {
+          primaryButton.style.background = theme.buttonHover;
         });
-        homeButton.addEventListener('mouseleave', () => {
-          homeButton.style.background = theme.buttonBg;
+        primaryButton.addEventListener('mouseleave', () => {
+          primaryButton.style.background = theme.buttonBg;
+        });
+      }
+
+      const secondaryButton = document.querySelector('.secondary-button');
+      if (secondaryButton) {
+        secondaryButton.style.background = theme.secondaryButtonBg;
+        secondaryButton.style.color = '#FFFFFF';
+        secondaryButton.addEventListener('mouseenter', () => {
+          secondaryButton.style.background = theme.secondaryButtonHover;
+        });
+        secondaryButton.addEventListener('mouseleave', () => {
+          secondaryButton.style.background = theme.secondaryButtonBg;
         });
       }
 
@@ -174,7 +195,7 @@
       line-height: 1.6;
     }
     .container {
-      max-width: 800px;
+      max-width: 600px;
       margin: 2rem;
       padding: 3rem;
       border-radius: 16px;
@@ -194,7 +215,7 @@
     }
     p {
       font-size: 1.1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       color: #6b7280;
       max-width: 500px;
       margin-left: auto;
@@ -204,15 +225,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      background-color: #059669;
+      background-color: #06DDB2;
       color: white;
       font-size: 2.5rem;
       margin: 0 auto 2rem;
       animation: scaleIn 0.5s ease-out 0.2s both;
-      box-shadow: 0 6px 15px rgba(5, 150, 105, 0.3);
     }
     @keyframes scaleIn {
       0% { transform: scale(0.5); opacity: 0; }
@@ -302,24 +322,52 @@
       content: "📋";
       font-size: 1rem;
     }
-    .home-button {
+    .button-container {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .primary-button {
       display: inline-block;
-      margin-top: 2.5rem;
       padding: 0.9rem 2rem;
-      background: #059669;
+      background: #06DDB2;
       color: white;
       text-decoration: none;
       border-radius: 8px;
       transition: all 0.3s;
       font-weight: 600;
       font-size: 1rem;
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+      box-shadow: 0 4px 12px rgba(6, 221, 178, 0.25);
       letter-spacing: 0.01em;
+      border: none;
+      cursor: pointer;
     }
-    .home-button:hover {
-      background: #047857;
+    .primary-button:hover {
+      background: #05c6a0;
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(5, 150, 105, 0.35);
+      box-shadow: 0 6px 15px rgba(6, 221, 178, 0.35);
+    }
+    .secondary-button {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background: #4a5568;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(74, 85, 104, 0.25);
+      letter-spacing: 0.01em;
+      border: none;
+      cursor: pointer;
+    }
+    .secondary-button:hover {
+      background: #2d3748;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(74, 85, 104, 0.35);
     }
     .copied-tooltip {
       position: fixed;
@@ -343,14 +391,18 @@
     @media (max-width: 768px) {
       .container {
         margin: 1rem;
-        padding: 2rem;
+        padding: 1.5rem;
+        width: 90%;
       }
       h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 1rem;
       }
       .success-icon {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         font-size: 2rem;
       }
       .response-section {
@@ -359,27 +411,53 @@
       .copy-button {
         padding: 0.5rem 1rem;
       }
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .primary-button, .secondary-button {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.2rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .success-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="success-icon">✓</div>
-    <h1>Payment Successful</h1>
-    <p>Thank you! Your payment was completed successfully. Your travel adventure awaits!</p>
+    <h1>Demo Completed Successfully</h1>
+    <p>Thank you for trying out our payment demo!</p>
+    <p>Your transaction was processed successfully and the demo has now concluded.</p>
     
-    <div class="response-section">
+    <div class="button-container">
+      <a href="/" class="primary-button">Return to Main Project</a>
+      <button class="secondary-button" onclick="toggleResponse()">View API Response</button>
+    </div>
+
+    <div id="responseSection" class="response-section" style="display: none;">
       <div class="response-header">
-        <span class="response-title">Payment Authorization Response</span>
+        <span class="response-title">API Response Details</span>
         <button class="copy-button" onclick="copyResponse()">Copy Response</button>
       </div>
       <div class="response-container" id="responseContainer">
         <pre id="responsePre">Loading response data...</pre>
       </div>
-      <button class="expand-button" onclick="toggleResponse()">Show More</button>
+      <button class="expand-button" onclick="expandCollapseResponse()">Show More</button>
     </div>
-
-    <a href="/" class="home-button">Return Home</a>
   </div>
 
   <div id="copiedTooltip" class="copied-tooltip">Copied to clipboard!</div>
@@ -459,6 +537,15 @@
     }
 
     function toggleResponse() {
+      const responseSection = document.getElementById('responseSection');
+      if (responseSection.style.display === 'none') {
+        responseSection.style.display = 'block';
+      } else {
+        responseSection.style.display = 'none';
+      }
+    }
+
+    function expandCollapseResponse() {
       const container = document.getElementById('responseContainer');
       const button = document.querySelector('.expand-button');
       
