@@ -1,0 +1,495 @@
+/* TravelEase - Main Stylesheet */
+
+:root {
+  --color-primary: #0066cc;
+  --color-primary-dark: #004c99;
+  --color-secondary: #ff9500;
+  --color-secondary-dark: #e67e00;
+  --color-accent: #5ac8fa;
+  --color-dark: #333333;
+  --color-light: #f5f5f7;
+  --color-gray: #8e8e93;
+  --color-success: #34c759;
+  --color-error: #ff3b30;
+  --border-radius-sm: 0.375rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--color-dark);
+  line-height: 1.5;
+}
+
+/* Header and Navigation */
+.site-header {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-link {
+  color: var(--color-dark);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link.active {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+/* Hero Section */
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 6rem 1rem;
+  position: relative;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Search Form */
+.search-form {
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  margin-top: -3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Destination Cards */
+.destination-card {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  background-color: white;
+  height: 100%;
+  position: relative;
+}
+
+.destination-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.destination-image {
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+  display: block;
+}
+
+.destination-content {
+  padding: 1.25rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  color: white;
+}
+
+.destination-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: white !important;
+}
+
+.destination-location {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.destination-price {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+}
+
+.destination-duration {
+  font-size: 0.875rem;
+  color: var(--color-gray);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  text-align: center;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Flow container styling */
+#flow-container {
+  border-radius: var(--border-radius-lg);
+  background-color: white;
+  padding: 1.5rem;
+  min-height: 300px;
+  box-shadow: var(--box-shadow);
+}
+
+#flow-container.loading {
+  position: relative;
+}
+
+#flow-container.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Error/Success Messages */
+#error-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fee2e2;
+  color: var(--color-error);
+  border-radius: var(--border-radius-md);
+}
+
+#error-message.hidden {
+  display: none;
+}
+
+#success-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #dcfce7;
+  color: var(--color-success);
+  border-radius: var(--border-radius-md);
+}
+
+#success-message.hidden {
+  display: none;
+}
+
+/* Notification style */
+.toast-notification {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  color: white;
+  font-weight: 500;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  background-color: var(--color-primary);
+  box-shadow: var(--box-shadow);
+}
+
+.toast-notification.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Booking Summary */
+.booking-summary {
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-total {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #eee;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 4rem 1rem;
+  }
+  
+  .search-container {
+    margin-top: -2rem;
+    padding: 1rem;
+  }
+  
+  .destination-image {
+    height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    padding: 3rem 1rem;
+    height: 70vh;
+  }
+  
+  .search-form {
+    margin-top: -1.5rem;
+  }
+  
+  .btn {
+    padding: 0.625rem 1.25rem;
+  }
+  
+  .destination-image {
+    height: 200px;
+  }
+}
+
+/* Extras Section */
+.extras-section {
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  margin-top: 2rem;
+}
+
+.extras-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.extra-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: var(--border-radius-md);
+  margin-bottom: 0.75rem;
+  transition: var(--transition);
+}
+
+.extra-item:hover {
+  border-color: var(--color-primary);
+}
+
+.extra-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--border-radius-sm);
+  margin-right: 1rem;
+}
+
+.extra-item-content {
+  flex: 1;
+}
+
+.extra-item-title {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.extra-item-price {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.extra-item-checkbox {
+  margin-left: 1rem;
+}
+
+/* Itinerary Section */
+.itinerary-section {
+  margin-top: 2rem;
+}
+
+.itinerary-day {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.itinerary-day:last-child {
+  border-bottom: none;
+}
+
+.itinerary-day-title {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.itinerary-day-title span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* Reviews Section */
+.reviews-section {
+  margin-top: 2rem;
+}
+
+.review-item {
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 1rem;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.review-author {
+  font-weight: 500;
+}
+
+.review-date {
+  color: var(--color-gray);
+  font-size: 0.875rem;
+  margin-left: auto;
+}
+
+.review-rating {
+  display: flex;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.review-content {
+  color: var(--color-dark);
+  line-height: 1.6;
+}
+
+/* Custom icon styles for trip details */
+.text-center [data-lucide="calendar"],
+.text-center [data-lucide="users"],
+.text-center [data-lucide="home"],
+.text-center [data-lucide="utensils"] {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary);
+  display: inline-block !important;
+}
+
+/* Specific styles for check icons in What's Included section */
+[data-lucide="check-circle"] {
+  width: 20px;
+  height: 20px;
+  color: var(--color-success);
+  stroke-width: 2;
+  display: inline-block !important;
+}
+
+/* Make sure stars are the right size and color */
+[data-lucide="star"] {
+  width: 16px;
+  height: 16px;
+  color: #fbbf24;
+  display: inline-block !important;
+}
+
+/* Ensure map pin icons display properly */
+[data-lucide="map-pin"] {
+  width: 16px;
+  height: 16px;
+  display: inline-block !important;
+}
+  

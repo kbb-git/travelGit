@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Test TravelEase Components</title>
+
+  <!-- React Production (trying production version instead of development) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Babel with correct presets -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- Checkout Web Components for Flow -->
+  <script src="https://checkout-web-components.checkout.com/index.js"></script>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div id="root">Loading...</div>
+
+  <script>
+    // Initialize Lucide icons
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      } else {
+        console.error('Lucide icons not loaded properly');
+      }
+    });
+  </script>
+
+  <!-- Test component with plain JSX -->
+  <script type="text/babel">
+    // Simple test component
+    function TestComponent() {
+      return (
+        <div style={{padding: '20px', backgroundColor: '#f5f5f5'}}>
+          <h1>Test Component Works!</h1>
+          <p>If you can see this, JSX is being transpiled correctly.</p>
+        </div>
+      );
+    }
+
+    // Render the test component
+    const rootElement = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<TestComponent />);
+  </script>
+</body>
+</html> 

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelEase - Your Journey Begins Here</title>
+  <meta name="description" content="Book your dream vacation with TravelEase. Discover amazing destinations, hotels, flights and travel packages at the best prices.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Polyfill for older browsers -->
+  <script src="https://cdn.jsdelivr.net/npm/core-js-bundle@3.30.2/minified.js"></script>
+  
+  <!-- Tailwind for convenience -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0066cc',
+            secondary: '#ff9500',
+            accent: '#5ac8fa',
+            dark: '#333333',
+            light: '#f5f5f7'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React + ReactDOM - Using specific versions known to work well -->
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  
+  <!-- Use specific version of Babel standalone -->
+  <script src="https://unpkg.com/@babel/standalone@7.23.5/babel.min.js"></script>
+  
+  <!-- Checkout Web Components for Flow -->
+  <script src="https://checkout-web-components.checkout.com/index.js"></script>
+
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Our custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Localization for Checkout.com Flow -->
+  <script src="js/localization.js"></script>
+  
+  <!-- Babel configuration -->
+  <script>
+    Babel.registerPreset('myPreset', {
+      presets: [
+        [Babel.availablePresets['react']]
+      ]
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .nav-link {
+      color: #333;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #007BFF;
+    }
+    .nav-link.active {
+      color: #007BFF;
+    }
+    /* Ensure Lucide icons are visible by default */
+    [data-lucide] {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      stroke-width: 1.5;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* Specific styles for the overview section icons */
+    .bg-gray-50 [data-lucide] {
+      color: #007BFF;
+    }
+    /* Specific styles for the What's Included check icons */
+    [data-lucide="check-circle"] {
+      color: #34c759;
+    }
+    /* RTL styles for Arabic and other RTL languages */
+    [dir="rtl"] .ml-auto {
+      margin-left: 0;
+      margin-right: auto;
+    }
+    [dir="rtl"] .mr-auto {
+      margin-right: 0;
+      margin-left: auto;
+    }
+    [dir="rtl"] .space-x-4 > * + * {
+      margin-left: 0;
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body class="antialiased bg-light font-[Poppins]">
+
+  <div id="root"></div>
+
+  <script>
+    // Initialize Lucide icons after DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+
+  <!-- Our React components -->
+  <script type="text/babel" data-presets="myPreset" src="js/components.js"></script>
+  
+  <!-- Our React app -->
+  <script type="text/babel" data-presets="myPreset" src="js/app.js"></script>
+  
+  <!-- Our checkout script - keep at the end to ensure localization is loaded first -->
+  <script src="js/checkout.js"></script>
+</body>
+</html>
