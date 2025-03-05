@@ -2327,7 +2327,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [bookingItems, setBookingItems] = useState([]);
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('selectedTheme') || 'default';
+    return localStorage.getItem('selectedTheme') || 'grapefruit';
   });
   const [globalLocalisation, setGlobalLocalisation] = useState("United Kingdom");
   const [detailProductId, setDetailProductId] = useState(null);
