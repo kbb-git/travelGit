@@ -325,6 +325,11 @@ img {
     padding: 1rem;
   }
   
+  .search-form {
+    margin-top: -2.5rem;
+    padding: 1.25rem;
+  }
+  
   .destination-image {
     height: 220px;
   }
@@ -366,7 +371,7 @@ img {
   }
   
   .search-form {
-    margin-top: -1.5rem;
+    margin-top: -2rem;
     padding: 1rem;
   }
   
@@ -468,6 +473,13 @@ img {
   
   .destination-title {
     font-size: 1.125rem;
+  }
+  
+  .search-form {
+    margin-top: -3rem;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
