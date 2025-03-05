@@ -269,8 +269,8 @@ app.post("/api/create-payment-session", async (req, res) => {
         email: customer && customer.email ? customer.email : "john.doe@example.com",
         name: customer && customer.name ? customer.name : "John Doe"
       },
-      success_url: `http://localhost:3001/success`,
-      failure_url: `http://localhost:3001/failure`,
+      success_url: `${req.protocol}://${req.get('host')}/success?session_id=${Date.now()}`,
+      failure_url: `${req.protocol}://${req.get('host')}/failure?session_id=${Date.now()}`,
       capture: true,
       locale: finalLocale || "en-GB",
       processing_channel_id: processingChannelId,
@@ -318,15 +318,23 @@ app.post("/api/create-payment-session", async (req, res) => {
 });
 
 app.get("/success", (req, res) => {
+  console.log("Success route hit with query params:", req.query);
   res.sendFile(path.join(__dirname, "public", "success.html"));
 });
 
 app.get("/failure", (req, res) => {
+  console.log("Failure route hit with query params:", req.query);
   res.sendFile(path.join(__dirname, "public", "failure.html"));
 });
 
 app.post("/success", (req, res) => {
+  console.log("POST Success route hit with body:", req.body);
   res.sendFile(path.join(__dirname, "public", "success.html"));
+});
+
+app.post("/failure", (req, res) => {
+  console.log("POST Failure route hit with body:", req.body);
+  res.sendFile(path.join(__dirname, "public", "failure.html"));
 });
 
 app.get("/api/payment-session/:sessionId", async (req, res) => {
